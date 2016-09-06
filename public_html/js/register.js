@@ -8,7 +8,7 @@ jQuery(function () {
 
     var $this = this;
 
-    this.jsonrpc = new cc_jsonrpc("http://golang_sample.local:9444/rpc");
+    this.jsonrpc = new cc_jsonrpc("http://golang_sample_backend.local:9444/rpc");
 
     this.init = function()
     {
