@@ -18,3 +18,23 @@ Add this hosts to your /etc/hosts:
 172.17.0.1 golang_sample_backend.local 
 172.17.0.1 golang_sample.local 
 ```
+
+## Usage
+
+### Usage with Vagrant
+
+
+
+### Usage with docker without Vagrant
+
+#### Start everything together
+
+Open a terminal and cd to this directory. Then do
+
+```
+docker-compose up
+```
+Then open your prefered Browser and type: http://golang_sample.local:9444/
+
+From there you should see a pretty ugly formular with the title: Register to the System
+
