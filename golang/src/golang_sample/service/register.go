@@ -34,6 +34,8 @@ func (t *Registration) Add(r *http.Request, args *RegistrationArgs, result *Vlad
 	//result = &Vlad{uuid: "yolo", time: "bleue"}
 	result.Uuid = "uuid result in String"
 	result.Time = "time result in String"
+	//result = new(User).Add("Maurice", "Courtois")
+
 	fmt.Println("result: ", result)
 	return nil
 }
