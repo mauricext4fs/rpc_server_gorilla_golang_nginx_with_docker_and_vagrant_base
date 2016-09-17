@@ -1,8 +1,7 @@
-package main
+package db
 
 import (
 	"fmt"
-	"golang_sample/db"
 )
 
 type User struct {
@@ -10,11 +9,11 @@ type User struct {
 }
 
 func (u *User) Add(firstname string, lastname string) string {
-	localDb := db.GetDb()
+	localDb := GetDb()
 	var lastInsertId int
 	var err error
 	err = localDb.QueryRow("INSERT INTO user (firname, lastname) VALUES($1, $2) returning id;", firstname, lastname).Scan(&lastInsertId)
-	db.CheckErr(err)
+	CheckErr(err)
 	returnVal := fmt.Sprintf("success %d", lastInsertId)
 	return returnVal
 }
