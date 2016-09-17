@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"golang_sample/db"
 	"log"
 	"net/http"
 )
@@ -35,6 +36,7 @@ func (t *Registration) Add(r *http.Request, args *RegistrationArgs, result *Vlad
 	result.Uuid = "uuid result in String"
 	result.Time = "time result in String"
 	//result = new(User).Add("Maurice", "Courtois")
+	result.Uuid = new(db.User).Add(args.Firstname, args.Lastname)
 
 	fmt.Println("result: ", result)
 	return nil

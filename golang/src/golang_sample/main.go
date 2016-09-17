@@ -16,6 +16,7 @@ import (
 	"github.com/gorilla/rpc/json"
 	"github.com/justinas/alice"
 
+	"golang_sample/db"
 	"golang_sample/service"
 )
 
@@ -26,6 +27,8 @@ var addr = flag.String("addr", ":1234", "http service address") // Q=17, R=18
 func main() {
 	//initHttpRouter()
 	initRpcServer()
+	// Init database singleton connection
+	_ = db.GetDb()
 }
 
 func initRpcServer() {
