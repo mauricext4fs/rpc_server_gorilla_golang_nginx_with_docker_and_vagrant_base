@@ -65,69 +65,8 @@ CREATE SEQUENCE user_id_seq
 ALTER TABLE user_id_seq OWNER TO postgres;
 ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
-CREATE TABLE "user_login" (
-    id integer NOT NULL,
-    username VARCHAR(255),
-    password VARCHAR(255),
-    created_time timestamp WITH TIME ZONE DEFAULT NOW(),
-    active boolean,
-    deleted boolean
-);
-ALTER TABLE "user_login" OWNER TO postgres;
-CREATE SEQUENCE user_login_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-ALTER TABLE user_login_id_seq OWNER TO postgres;
-ALTER SEQUENCE user_login_id_seq OWNED BY user_login.id;
-
-CREATE TABLE authtoken (
-    id integer NOT NULL,
-    token uuid,
-    created_time timestamp WITH TIME ZONE DEFAULT NOW(),
-    active boolean,
-    deleted boolean
-);
-CREATE SEQUENCE authtoken_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-ALTER TABLE authtoken_id_seq OWNER TO postgres;
-ALTER SEQUENCE authtoken_id_seq OWNED BY authtoken.id;
-
-CREATE TABLE user_authtoken (
-    id integer NOT NULL,
-    micl_id integer,
-    authtoken_id integer,
-    created_time timestamp WITH TIME ZONE DEFAULT NOW(),
-    active boolean,
-    deleted boolean
-);
-ALTER TABLE user_authtoken OWNER TO postgres;
-CREATE SEQUENCE user_authtoken_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-ALTER TABLE user_authtoken_id_seq OWNER TO postgres;
-ALTER TABLE ONLY authtoken ALTER COLUMN id SET DEFAULT nextval('authtoken_id_seq'::regclass);
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
-ALTER TABLE ONLY user_authtoken ALTER COLUMN id SET DEFAULT nextval('user_authtoken_id_seq'::regclass);
-ALTER TABLE ONLY user_login ALTER COLUMN id SET DEFAULT nextval('user_login_id_seq'::regclass);
 
---SELECT pg_catalog.setval('owner_authtoken_id_seq', 1, false);
---SELECT pg_catalog.setval('owner_id_seq', 1, false);
-ALTER TABLE ONLY authtoken
-    ADD CONSTRAINT authtoken_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY user_authtoken
-    ADD CONSTRAINT user_authtoken_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY user_login
-    ADD CONSTRAINT user_login_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY "user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 REVOKE ALL ON SCHEMA public FROM PUBLIC;

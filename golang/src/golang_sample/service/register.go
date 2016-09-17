@@ -30,13 +30,13 @@ type Vlad struct {
 }
 
 //This procedure is invoked by rpc and calls rpcexample.Multiply which stores product of args.A and args.B in result pointer
-func (t *Registration) Add(r *http.Request, args *RegistrationArgs, result *Vlad) error {
+func (t *Registration) Add(r *http.Request, args *db.User, result *Vlad) error {
 	fmt.Println("Something is comming! ", args)
 	//result = &Vlad{uuid: "yolo", time: "bleue"}
 	result.Uuid = "uuid result in String"
 	result.Time = "time result in String"
 	//result = new(User).Add("Maurice", "Courtois")
-	result.Uuid = new(db.User).Add(args.Firstname, args.Lastname)
+	result.Uuid = new(db.User).Add(args)
 
 	fmt.Println("result: ", result)
 	return nil
