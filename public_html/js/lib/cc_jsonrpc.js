@@ -14,7 +14,7 @@ var cc_jsonrpc = function(strServiceUrl) {
     {
     };
 
-    this.call = function(strRpcMethod, objParams, objContext, strFncCallback)
+    this.call = function(strRpcMethod, objParams, objContext, strFncSuccessCallback, strFncErrorCallback)
     {
         var objRequest = {
             jsonrpc: "2.0",
@@ -29,8 +29,20 @@ var cc_jsonrpc = function(strServiceUrl) {
                 throw "Security Error";
             };
 
-            if (!$this.empty(objContext) && !$this.empty($this.gv(objContext, strFncCallback))) {
-                objContext[strFncCallback](response.result);
+            if (!$this.empty(objContext)) {
+                var objResult = $this.gv(response, "result");
+                var objError = $this.gv(response, "error");
+                
+                /*
+                 * As JSON-RPC Standard... if error is present, 
+                 * result should be null, so only one type of 
+                 * response can come back
+                 */
+                if (!$this.empty(objError) && !$this.empty($this.gv(objContext, strFncErrorCallback))) {
+                    objContext[strFncErrorCallback](response.error);
+                } else if (!$this.empty($this.gv(objContext, strFncSuccessCallback))) {
+                    objContext[strFncSuccessCallback](response.result);
+                }
             };
 
         }, "json");
