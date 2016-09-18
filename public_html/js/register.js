@@ -8,6 +8,9 @@ jQuery(function () {
 
     var $this = this;
 
+    this.elResponseErrorMsg = jQuery("p.save_msg_error");
+    this.elResponseSuccessMsg = jQuery("p.save_msg_success");
+
     this.jsonrpc = new cc_jsonrpc("http://golang_sample_backend.local:9444/rpc");
 
     this.init = function()
@@ -32,7 +35,6 @@ jQuery(function () {
         var objFormValue = {};
         var objjQueryValue = elForm.serializeArray();
         for (var numKey in objjQueryValue) {
-            console.log(objjQueryValue[numKey]);
             objFormValue[objjQueryValue[numKey].name] = objjQueryValue[numKey].value;
         }
 
@@ -41,18 +43,35 @@ jQuery(function () {
 
     this.sendDataToRegister = function(objForm)
     {
+        // Reset all Callback Msg Area
+        $this.elResponseErrorMsg.hide();
+        $this.elResponseSuccessMsg.hide();
+        
+
         $this.jsonrpc.call('Registration.Add', 
             [
                 objForm
             ],
             $this,
-            "sendDataToRegisterCallback"
+            "sendDataToRegisterSuccessCallback",
+            "sendDataToRegisterErrorCallback"
         );
     };
 
-    this.sendDataToRegisterCallback = function(response)
+    this.sendDataToRegisterErrorCallback = function(response)
     {
-        console.log(response);
+        if (!$this.empty(response)) {
+            $this.elResponseErrorMsg.text(response);
+            $this.elResponseErrorMsg.show('slow');
+        }
+    };
+
+    this.sendDataToRegisterSuccessCallback = function(response)
+    {
+        if (!$this.empty(response)) {
+            $this.elResponseSuccessMsg.text(response);
+            $this.elResponseSuccessMsg.show('slow');
+        }
     };
 
     $this.init();
