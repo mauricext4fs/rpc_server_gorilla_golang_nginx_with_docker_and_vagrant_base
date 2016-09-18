@@ -19,6 +19,10 @@ type Result struct {
 	Msg   string
 }
 
+type Error struct {
+	s string
+}
+
 //This procedure is invoked by rpc and calls rpcexample.Multiply which stores product of args.A and args.B in result pointer
 func (t *Registration) Add(r *http.Request, args *db.User, result *Result) error {
 	newId := new(db.User).Add(args)
@@ -26,5 +30,11 @@ func (t *Registration) Add(r *http.Request, args *db.User, result *Result) error
 	// Result is already initialized from the function signature
 	result.NewId = newId
 	result.Msg = msg
-	return nil
+	localError := new(Error)
+	localError.s = "An Error occured when trying to save to the DB"
+	return localError
+}
+
+func (e *Error) Error() string {
+	return e.s
 }
