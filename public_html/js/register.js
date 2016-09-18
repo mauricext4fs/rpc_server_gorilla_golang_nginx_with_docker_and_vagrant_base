@@ -69,7 +69,7 @@ jQuery(function () {
     this.sendDataToRegisterSuccessCallback = function(response)
     {
         if (!$this.empty(response)) {
-            $this.elResponseSuccessMsg.text(response);
+            $this.elResponseSuccessMsg.text(response.Msg);
             $this.elResponseSuccessMsg.show('slow');
         }
     };
