@@ -33,10 +33,3 @@ func CheckErr(err error) {
 		panic(err)
 	}
 }
-
-func addMicl(url string) {
-	var lastInsertId int
-	var err error
-	err = db.QueryRow("INSERT INTO micl (url) VALUES($1) returning id;", url).Scan(&lastInsertId)
-	CheckErr(err)
-}

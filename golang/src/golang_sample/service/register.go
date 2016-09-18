@@ -9,11 +9,6 @@ import (
 //Represents service Registration
 type Registration string
 
-//Holds arguments to be passed to service Arith in RPC call
-type RegistrationArgs struct {
-	Firstname, Lastname, Email, Micl_uuid, Url string
-}
-
 type Result struct {
 	NewId int
 	Msg   string
