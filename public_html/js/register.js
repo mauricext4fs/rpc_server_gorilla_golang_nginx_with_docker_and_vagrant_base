@@ -23,7 +23,7 @@ jQuery(function () {
             event.preventDefault();
             var elForm = jQuery(this).closest("form");
             var objForm = $this.getFormValue(elForm);
-            $this.sendDataToMiccRegister(objForm);
+            $this.sendDataToRegister(objForm);
         });
     };
 
@@ -39,27 +39,18 @@ jQuery(function () {
         return objFormValue;
     };
 
-    this.sendDataToMiccRegister = function(objForm)
+    this.sendDataToRegister = function(objForm)
     {
-        console.log('yolo');
         $this.jsonrpc.call('Registration.Add', 
             [
                 objForm
             ],
             $this,
-            "sendDataToMiccRegisterCallback"
+            "sendDataToRegisterCallback"
         );
-        /*$this.jsonrpc.call('Register.Multiply', 
-            [{ 
-                A: 1,
-                B: 23
-            }],
-            $this,
-            "sendDataToMiccRegisterCallback"
-        );*/
     };
 
-    this.sendDataToMiccRegisterCallback = function(response)
+    this.sendDataToRegisterCallback = function(response)
     {
         console.log(response);
     };

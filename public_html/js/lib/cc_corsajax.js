@@ -2,8 +2,8 @@
 /*global jQuery, moment */
 'use strict';
 /**
- * Global methods use for injection into 
- * the pass object.
+ * cc_crosajax is a Global methods use 
+ * for injection into the pass object.
  */
 function cc_corsajax(obj) {
 
