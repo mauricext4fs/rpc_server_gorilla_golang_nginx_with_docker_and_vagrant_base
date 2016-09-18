@@ -25,14 +25,21 @@ type Error struct {
 
 //This procedure is invoked by rpc and calls rpcexample.Multiply which stores product of args.A and args.B in result pointer
 func (t *Registration) Add(r *http.Request, args *db.User, result *Result) error {
+	/*
+	 Not allowing Empty Firstname and Lastname
+	*/
+	if args.Firstname == "" || args.Lastname == "" || args.Email == "" {
+		localError := new(Error)
+		localError.s = "Firstname, Lastname and Email are required!"
+		return localError
+	}
 	newId := new(db.User).Add(args)
 	msg := fmt.Sprintf("User with name: %s succcessfuly insert with Id: %d in the DB", args.Firstname, newId)
 	// Result is already initialized from the function signature
 	result.NewId = newId
 	result.Msg = msg
-	localError := new(Error)
-	localError.s = "An Error occured when trying to save to the DB"
-	return localError
+
+	return nil
 }
 
 func (e *Error) Error() string {
