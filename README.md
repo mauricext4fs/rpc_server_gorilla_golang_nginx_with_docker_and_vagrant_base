@@ -79,3 +79,18 @@ The previous Command should leave you the command prompt and look similar to thi
 h:rpc_server_gorilla_golang_nginx_with_docker_and_vagrant_base mauricecourtois$
 ```
 
+Then do:
+
+```
+vagrant ssh
+```
+
+wait a bit...
+
+when prompt again type:
+
+```
+cd /vagrant
+```
+
+Then follow the same instruction as in "Bringing all up with docker without Vagrant"
