@@ -9,16 +9,19 @@ import (
 //Represents service Registration
 type Registration string
 
+// This is the struct representing the
+// return value of the service
 type Result struct {
 	NewId int
 	Msg   string
 }
 
+// RPC-Error struct
 type Error struct {
 	s string
 }
 
-//This procedure is invoked by rpc and calls rpcexample.Multiply which stores product of args.A and args.B in result pointer
+// Registration Service Add method
 func (t *Registration) Add(r *http.Request, args *db.User, result *Result) error {
 	/*
 	 Not allowing Empty Firstname and Lastname
@@ -30,13 +33,14 @@ func (t *Registration) Add(r *http.Request, args *db.User, result *Result) error
 	}
 	newId := new(db.User).Add(args)
 	msg := fmt.Sprintf("User with name: %s succcessfuly insert with Id: %d in the DB", args.Firstname, newId)
-	// Result is already initialized from the function signature
+	// Result is already initialized from the function prototype
 	result.NewId = newId
 	result.Msg = msg
 
 	return nil
 }
 
+// to string error
 func (e *Error) Error() string {
 	return e.s
 }
