@@ -66,4 +66,16 @@ Open a terminal and cd to this directory. Then do
 vagrant up
 ```
 
-This may 
+This may take a while, as vagrant will download the VM from the web.
+
+The previous Command should leave you the command prompt and look similar to this:
+
+```
+==> default: Configuring and enabling network interfaces...
+==> default: Mounting shared folders...
+    default: /vagrant => /Users/mauricecourtois/src/rpc_server_gorilla_golang_nginx_with_docker_and_vagrant_base
+==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> default: flag to force provisioning. Provisioners marked to run always will still run.
+h:rpc_server_gorilla_golang_nginx_with_docker_and_vagrant_base mauricecourtois$
+```
+
