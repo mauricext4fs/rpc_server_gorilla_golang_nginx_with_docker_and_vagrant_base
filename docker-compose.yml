@@ -4,9 +4,6 @@ postgres_db:
         - 5433:5432
     volumes:
         - ./postgres:/opt/postgres/
-    environment: 
-        - POSTGRES_PASSWORD:*(SuperSave/{
-
 nginx:
     build: nginx
     volumes:
@@ -25,7 +22,4 @@ golang:
         - 1234:1234
     links:
         - postgres_db:5433
-    environment: 
-        - POSTGRES_USER:postgres
-        - POSTGRES_PASSWORD:*(SuperSave/{
 

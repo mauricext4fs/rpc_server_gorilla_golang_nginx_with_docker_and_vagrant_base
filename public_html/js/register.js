@@ -10,6 +10,7 @@ jQuery(function () {
 
     this.elResponseErrorMsg = jQuery("p.save_msg_error");
     this.elResponseSuccessMsg = jQuery("p.save_msg_success");
+    this.elForm = jQuery("form");
 
     this.jsonrpc = new cc_jsonrpc("http://golang_sample_backend.local:9444/rpc");
 
@@ -71,6 +72,7 @@ jQuery(function () {
         if (!$this.empty(response)) {
             $this.elResponseSuccessMsg.text(response.Msg);
             $this.elResponseSuccessMsg.show('slow');
+            $this.elForm.hide('slow');
         }
     };
 

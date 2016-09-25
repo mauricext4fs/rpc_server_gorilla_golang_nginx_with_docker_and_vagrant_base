@@ -94,3 +94,19 @@ cd /vagrant
 ```
 
 Then follow the same instruction as in "Bringing all up with docker without Vagrant"
+
+## Extension
+
+To add more services to the RPC server you just need to add (or copy golang/src/golang_sample/service/register.go) in golang/src/golang_sample/service/. Then you only need to add a line in main.go to register the new service as RPC service.
+
+## Database
+
+To access the PostgreSQL database included in this sample:
+
+( if using Vagrant )
+host: 192.168.69.211
+( if using Docker only )
+host: 172.17.0.1
+username: postgres
+password: (NO PASSWORD)
+
