@@ -12,15 +12,13 @@ var (
 	db   *sql.DB
 )
 
-func initDb() *sql.DB {
+func initDb() {
 	//defer db.Close()
 	var err error
 	dbinfo := fmt.Sprintf("host=172.17.0.1 port=5433 user=%s password=%s dbname=%s sslmode=disable",
 		"postgres", "**7/ClydeAVALON$$", "golang_sample")
 	db, err = sql.Open("postgres", dbinfo)
 	CheckErr(err)
-
-	return db
 }
 
 func GetDb() *sql.DB {
