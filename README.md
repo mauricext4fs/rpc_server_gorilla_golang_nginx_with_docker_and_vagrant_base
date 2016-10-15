@@ -1,6 +1,8 @@
 # rpc\_server\_gorilla\_golang\_nginx\_with\_docker\_and\_vagrant\_base
 Base rep to start a new rpc server project in golang. In does have Vagrant config file (best to use on Mac or Windows) to contain the docker container.
 
+For more information about this project and a line by line explanation please refer to: [https://mauricext4fs.wordpress.com/2016/09/25/complete-golang-rpc-application/]
+
 ## Setup with Vagrant (Recommend on Mac and Windows)
 
 Add this hosts to your /etc/hosts:
